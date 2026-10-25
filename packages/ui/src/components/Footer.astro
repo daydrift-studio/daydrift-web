@@ -1,0 +1,130 @@
+---
+interface Props {
+  locale?: "zh-CN" | "en";
+}
+
+const { locale = "zh-CN" } = Astro.props;
+const isZh = locale === "zh-CN";
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-title">《度日：Daydrift》</div>
+        <p class="footer-tagline">
+          {isZh ? "一款以生活切片、漫游互动与旅人同游为核心的像素生活模拟游戏。" : "An indie pixel slice-of-life simulation game."}
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <div class="link-group">
+          <div class="group-title">{isZh ? "生态导航" : "Ecosystem"}</div>
+          <a href="/#download">{isZh ? "版本下载" : "Downloads"}</a>
+          <a href="https://docs.daydrift.example" target="_blank" rel="noopener">{isZh ? "文档中心" : "Docs"}</a>
+          <a href="https://mods.daydrift.example" target="_blank" rel="noopener">{isZh ? "Mod 商店" : "Mod Store"}</a>
+          <a href="https://github.com/daydrift-studio/daydrift-mod-sdk" target="_blank" rel="noopener">{isZh ? "Mod SDK" : "Mod SDK"}</a>
+        </div>
+
+        <div class="link-group">
+          <div class="group-title">{isZh ? "法律与指引" : "Legal & Safety"}</div>
+          <a href="/eula">{isZh ? "最终用户许可协议 (EULA)" : "EULA"}</a>
+          <a href="/privacy">{isZh ? "隐私政策" : "Privacy Policy"}</a>
+          <a href="https://github.com/daydrift-studio/daydrift" target="_blank" rel="noopener">{isZh ? "官方 GitHub" : "GitHub"}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        © {currentYear} 白鹿原嚒 / Daydrift Studio. {isZh ? "保留所有权利。" : "All rights reserved."}
+      </div>
+      <div class="disclaimer">
+        {isZh ? "本站下载资源均由官方 Ed25519 签名保护。游戏本体绝对闭源，源码不托管于任何公共代码仓库。" : "Releases protected by official Ed25519 signatures."}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-subtle);
+    padding: 3rem 0 2rem;
+    margin-top: auto;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    max-width: 380px;
+  }
+
+  .footer-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 3.5rem;
+    flex-wrap: wrap;
+  }
+
+  .link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .group-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-amber);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+
+  .link-group a {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .link-group a:hover {
+    color: var(--text-main);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

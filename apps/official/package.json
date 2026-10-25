@@ -1,0 +1,23 @@
+{
+  "name": "@daydrift/official",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 4321",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "lint": "tsc --noEmit",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@daydrift/content": "workspace:*",
+    "@daydrift/ui": "workspace:*",
+    "astro": "^5.4.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.7.3"
+  }
+}

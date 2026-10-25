@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = Astro.url.href,
+  image = "/og-image.png",
+  type = "website"
+} = Astro.props;
+
+const siteName = "度日：Daydrift";
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+---
+
+<!-- 基础元信息 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- OpenGraph / 社交分享卡片 -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={image} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+<!-- 移动端与主题 -->
+<meta name="theme-color" content="#0f1013" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

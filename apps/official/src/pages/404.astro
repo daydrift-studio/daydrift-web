@@ -1,0 +1,78 @@
+---
+import "@daydrift/ui/styles";
+import SEOHead from "@daydrift/ui/components/SEOHead.astro";
+import Header from "@daydrift/ui/components/Header.astro";
+import Footer from "@daydrift/ui/components/Footer.astro";
+import PixelButton from "@daydrift/ui/components/PixelButton.astro";
+import { zhCN } from "@daydrift/content";
+
+const t = zhCN;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEOHead
+      title="404 - 页面未找到"
+      description="未能找到您访问的页面。"
+    />
+  </head>
+  <body>
+    <Header locale="zh-CN" />
+
+    <main class="not-found-main">
+      <div class="container not-found-container">
+        <div class="pixel-code">404</div>
+        <h1 class="not-found-title">{t.common.pageNotFound}</h1>
+        <p class="not-found-desc">{t.common.pageNotFoundDesc}</p>
+
+        <div class="not-found-actions">
+          <PixelButton href="/" variant="primary" size="md">
+            {t.common.returnHome}
+          </PixelButton>
+        </div>
+      </div>
+    </main>
+
+    <Footer locale="zh-CN" />
+  </body>
+</html>
+
+<style>
+  .not-found-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 0;
+  }
+
+  .not-found-container {
+    text-align: center;
+    max-width: 520px;
+  }
+
+  .pixel-code {
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--accent-amber);
+    line-height: 1;
+    margin-bottom: 1rem;
+    font-family: var(--font-pixel);
+  }
+
+  .not-found-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+  }
+
+  .not-found-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+</style>

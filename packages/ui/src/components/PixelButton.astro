@@ -1,0 +1,64 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "danger";
+  size?: "sm" | "md" | "lg";
+  type?: "button" | "submit" | "reset";
+  target?: string;
+  rel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = "secondary",
+  size = "md",
+  type = "button",
+  target,
+  rel,
+  class: className = ""
+} = Astro.props;
+
+const classes = [
+  "pixel-btn",
+  `pixel-btn-${variant}`,
+  `pixel-btn-${size}`,
+  className
+].filter(Boolean).join(" ");
+---
+
+{
+  href ? (
+    <a href={href} class={classes} target={target} rel={rel}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .pixel-btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  .pixel-btn-md {
+    padding: 0.65rem 1.3rem;
+    font-size: 0.95rem;
+  }
+  .pixel-btn-lg {
+    padding: 0.85rem 1.8rem;
+    font-size: 1.05rem;
+  }
+
+  .pixel-btn-danger {
+    background-color: var(--accent-danger);
+    color: #fff;
+    border-color: #e06666;
+  }
+  .pixel-btn-danger:hover {
+    background-color: #b03a3a;
+  }
+</style>

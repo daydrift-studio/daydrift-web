@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string;
+  hoverable?: boolean;
+}
+
+const { class: className = "", hoverable = true } = Astro.props;
+---
+
+<div class:list={["pixel-box", { "is-hoverable": hoverable }, className]}>
+  <slot />
+</div>
+
+<style>
+  .pixel-box {
+    padding: 1.5rem;
+  }
+  .pixel-box:not(.is-hoverable):hover {
+    border-color: var(--border-subtle);
+  }
+</style>

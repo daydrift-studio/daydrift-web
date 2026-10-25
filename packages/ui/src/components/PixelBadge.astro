@@ -1,0 +1,70 @@
+---
+interface Props {
+  variant?: "verified" | "beta" | "unsigned" | "invalid" | "neutral" | "platform";
+  text: string;
+}
+
+const { variant = "neutral", text } = Astro.props;
+---
+
+<span class:list={["badge", `badge-${variant}`]}>
+  <span class="badge-dot"></span>
+  <span class="badge-text">{text}</span>
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-surface);
+    color: var(--text-muted);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+  }
+
+  .badge-verified {
+    border-color: rgba(80, 136, 85, 0.4);
+    background-color: rgba(80, 136, 85, 0.15);
+    color: #8ed495;
+  }
+  .badge-verified .badge-dot { background-color: #508855; }
+
+  .badge-beta {
+    border-color: rgba(229, 154, 76, 0.4);
+    background-color: rgba(229, 154, 76, 0.15);
+    color: #f7ca97;
+  }
+  .badge-beta .badge-dot { background-color: #e59a4c; }
+
+  .badge-unsigned {
+    border-color: rgba(150, 151, 164, 0.4);
+    background-color: rgba(150, 151, 164, 0.1);
+    color: var(--text-muted);
+  }
+  .badge-unsigned .badge-dot { background-color: var(--text-faint); }
+
+  .badge-invalid {
+    border-color: rgba(201, 76, 76, 0.4);
+    background-color: rgba(201, 76, 76, 0.15);
+    color: #f08989;
+  }
+  .badge-invalid .badge-dot { background-color: #c94c4c; }
+
+  .badge-platform {
+    border-color: var(--border-subtle);
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+  }
+  .badge-platform .badge-dot { background-color: var(--accent-amber); }
+</style>

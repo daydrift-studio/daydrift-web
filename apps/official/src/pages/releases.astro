@@ -1,0 +1,330 @@
+---
+import "@daydrift/ui/styles";
+import SEOHead from "@daydrift/ui/components/SEOHead.astro";
+import Header from "@daydrift/ui/components/Header.astro";
+import Footer from "@daydrift/ui/components/Footer.astro";
+import PixelButton from "@daydrift/ui/components/PixelButton.astro";
+import PixelBadge from "@daydrift/ui/components/PixelBadge.astro";
+import PixelCard from "@daydrift/ui/components/PixelCard.astro";
+
+// 示例更新历史数据（Phase 2 将由 data/releases.json 快照动态驱动）
+const releasesHistory = [
+  {
+    version: "0.2.1-alpha",
+    tag: "v0.2.1-alpha",
+    versionCode: 4,
+    publishedAt: "2026-10-25",
+    channel: "alpha",
+    title: "联机漫游与模组扩展体验全面升级",
+    highlights: [
+      "本地局域网一键开服与房间自动发现，支持自定义入房口令与时段流转规则",
+      "极简在线旅人悬浮标牌，按 Tab 键即时查看同游旅人与昵称，画面无大黑幕遮挡",
+      "全域 13 项极简聊天指令智能补全（/help, /time, /nick, /mods 等）及滑动历史翻阅",
+      "Minecraft 经典风格 F3 性能监控面板升级，支持 -Xmx 启动参数控制最大运行内存",
+      "门外小镇街道横向拓宽至 1440 像素，新增复古街灯与长椅漫游互动",
+      "模组扩展中心支持独立模组参数热配置与 Tier 2 安全沙箱生命周期钩子"
+    ],
+    assets: [
+      {
+        platform: "Windows (64-bit)",
+        file: "Daydrift_v0.2.1-alpha_win_x64.exe",
+        size: "48.2 MiB",
+        sha256: "sha256:e3b0c442...8b456789",
+        url: "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_win_x64.exe"
+      },
+      {
+        platform: "Linux / Steam Deck (x64)",
+        file: "Daydrift_v0.2.1-alpha_linux_x64.x86_64",
+        size: "45.8 MiB",
+        sha256: "sha256:a1b2c3d4...9e8f7a6b",
+        url: "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_linux_x64.x86_64"
+      },
+      {
+        platform: "Android (ARM64 APK)",
+        file: "Daydrift_v0.2.1-alpha_android_arm64.apk",
+        size: "39.5 MiB",
+        sha256: "sha256:f5e4d3c2...1a2b3c4d",
+        url: "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_android_arm64.apk"
+      },
+      {
+        platform: "独立服务端 (Linux x64)",
+        file: "Daydrift_Server_v0.2.1-alpha_linux_x64.zip",
+        size: "18.3 MiB",
+        sha256: "sha256:7c8b9a0f...3e2d1c0b",
+        url: "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_Server_v0.2.1-alpha_linux_x64.zip"
+      }
+    ]
+  },
+  {
+    version: "0.2.0-alpha",
+    tag: "v0.2.0-alpha",
+    versionCode: 3,
+    publishedAt: "2026-10-18",
+    channel: "alpha",
+    title: "多语言国际化与基础生活日常切片",
+    highlights: [
+      "实现中英文完整本地化切换，覆盖居所交互与界面对白",
+      "基础生活时钟运转，清晨、正午、傍晚与深夜流转闭环",
+      "居所起居室环境与卧室手冲咖啡交互初版支持"
+    ],
+    assets: []
+  }
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEOHead
+      title="版本更新历史与发布记录"
+      description="《度日：Daydrift》官方发布版本记录、历史版本更新日志与全平台客户端下载矩阵。"
+    />
+  </head>
+  <body>
+    <Header currentTab="download" locale="zh-CN" />
+
+    <main class="releases-main">
+      <div class="container">
+        <div class="page-header">
+          <div class="header-badge">
+            <PixelBadge variant="verified" text="官方发行日志" />
+          </div>
+          <h1 class="page-title">版本更新历史 (Releases)</h1>
+          <p class="page-subtitle">
+            客户端启动时会静默比对最新版本。您可以在此查阅每一次生活切片的演进与下载对应平台的构建包。
+          </p>
+        </div>
+
+        <div class="releases-timeline">
+          {releasesHistory.map((rel) => (
+            <article class="release-item" id={`version-${rel.version}`}>
+              <PixelCard class="release-card">
+                <div class="release-card-header">
+                  <div class="title-meta">
+                    <span class="version-tag">v{rel.version}</span>
+                    <PixelBadge variant={rel.channel === "alpha" ? "beta" : "verified"} text={rel.channel.toUpperCase()} />
+                    <span class="release-date">{rel.publishedAt}</span>
+                  </div>
+                  <h2 class="release-title">{rel.title}</h2>
+                </div>
+
+                <div class="changelog-body">
+                  <h3 class="section-label">版本更新亮点</h3>
+                  <ul class="highlight-list">
+                    {rel.highlights.map((point) => (
+                      <li class="highlight-item">{point}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {rel.assets.length > 0 && (
+                  <div class="assets-section">
+                    <h3 class="section-label">平台构建产物下载</h3>
+                    <div class="assets-grid">
+                      {rel.assets.map((asset) => (
+                        <div class="asset-tile">
+                          <div class="asset-info">
+                            <span class="asset-platform">{asset.platform}</span>
+                            <span class="asset-size">{asset.size}</span>
+                          </div>
+                          <div class="asset-file" title={asset.file}>{asset.file}</div>
+                          <div class="asset-sha">{asset.sha256}</div>
+                          <div class="asset-btn">
+                            <PixelButton href={asset.url} variant="primary" size="sm" target="_blank" rel="noopener">
+                              下载此文件
+                            </PixelButton>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div class="release-footer">
+                  <span class="immutability-note">
+                    🛡️ 该版本由官方 Ed25519 私钥签名。Release 资产具备不可变性。
+                  </span>
+                  <a href={`https://github.com/daydrift-studio/daydrift/releases/tag/${rel.tag}`} target="_blank" rel="noopener" class="github-rel-link">
+                    在 GitHub Releases 中查看 →
+                  </a>
+                </div>
+              </PixelCard>
+            </article>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <Footer locale="zh-CN" />
+  </body>
+</html>
+
+<style>
+  .releases-main {
+    padding: 3.5rem 0 5rem;
+  }
+
+  .page-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .header-badge {
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .releases-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .release-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .release-card-header {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1.25rem;
+  }
+
+  .title-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .version-tag {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+    font-family: var(--font-pixel);
+  }
+
+  .release-date {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+  }
+
+  .release-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .section-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-amber);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .highlight-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .highlight-item {
+    font-size: 0.92rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .highlight-item::before {
+    content: "•";
+    color: var(--accent-amber);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+
+  .assets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .asset-tile {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .asset-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .asset-file {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: monospace;
+  }
+
+  .asset-sha {
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    font-family: monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .asset-btn {
+    margin-top: 0.5rem;
+  }
+
+  .release-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.25rem;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .github-rel-link {
+    color: var(--accent-amber);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .github-rel-link:hover {
+    text-decoration: underline;
+  }
+</style>

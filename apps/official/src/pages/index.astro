@@ -1,0 +1,294 @@
+---
+import "@daydrift/ui/styles";
+import SEOHead from "@daydrift/ui/components/SEOHead.astro";
+import Header from "@daydrift/ui/components/Header.astro";
+import Footer from "@daydrift/ui/components/Footer.astro";
+import PixelButton from "@daydrift/ui/components/PixelButton.astro";
+import PixelBadge from "@daydrift/ui/components/PixelBadge.astro";
+import PixelCard from "@daydrift/ui/components/PixelCard.astro";
+import { zhCN } from "@daydrift/content";
+
+const t = zhCN;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEOHead
+      title="度日：Daydrift 官方网站"
+      description="《度日：Daydrift》官方网站。以生活切片、街道漫游、日常互动与同游旅人为核心的像素生活模拟游戏。提供全平台正版离线安装包下载与 Mod 生态。"
+    />
+  </head>
+  <body>
+    <Header currentTab="home" locale="zh-CN" />
+
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container hero-container">
+          <div class="hero-tag">
+            <PixelBadge variant="beta" text="0.2.1-alpha 先行测试阶段" />
+            <span class="hero-tag-text">像素日常 · 生活切片 · 漫游同游</span>
+          </div>
+
+          <h1 class="hero-title">{t.home.heroTitle}</h1>
+          <p class="hero-description">{t.home.heroDesc}</p>
+
+          <div class="hero-actions">
+            <PixelButton href="#download" variant="primary" size="lg">
+              下载游戏客户端
+            </PixelButton>
+            <PixelButton href="https://docs.daydrift.example" variant="secondary" size="lg" target="_blank" rel="noopener">
+              阅读玩家手册
+            </PixelButton>
+          </div>
+        </div>
+      </section>
+
+      <!-- Highlights Section -->
+      <section class="features-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">生活切片与漫游特色</h2>
+            <p class="section-subtitle">一段不设截止日期的静谧旅途</p>
+          </div>
+
+          <div class="feature-grid">
+            <PixelCard>
+              <div class="feature-icon">☕</div>
+              <h3 class="feature-title">起居日常与物件互动</h3>
+              <p class="feature-desc">从卧室床榻苏醒，在烧水壶冲泡一杯热挂耳咖啡。细微的声音与温暖的蒸汽，构筑生活本真。</p>
+            </PixelCard>
+
+            <PixelCard>
+              <div class="feature-icon">🏮</div>
+              <h3 class="feature-title">门外横向街景长卷</h3>
+              <p class="feature-desc">横向拓宽的 1440 像素连绵街道，复古街灯、驻足长椅与来往行人，在时光流转中静默相伴。</p>
+            </PixelCard>
+
+            <PixelCard>
+              <div class="feature-icon">🚶</div>
+              <h3 class="feature-title">旅人联机同游</h3>
+              <p class="feature-desc">本地局域网一键开服与自动发现，极简在线悬浮标牌，与身边的同游者在同一个像素世界漫步。</p>
+            </PixelCard>
+
+            <PixelCard>
+              <div class="feature-icon">🧩</div>
+              <h3 class="feature-title">开放的 Mod 扩展</h3>
+              <p class="feature-desc">独立沙箱、Lua 脚本与中文类型定义，官方 Ed25519 签名审计，安全拓展你的专属故事。</p>
+            </PixelCard>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download Matrix Section -->
+      <section id="download" class="download-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">{t.home.downloadTitle}</h2>
+            <p class="section-subtitle">{t.home.downloadDesc}</p>
+          </div>
+
+          <div class="download-grid">
+            <PixelCard class="download-box">
+              <div class="platform-header">
+                <span class="platform-name">Windows 桌面端</span>
+                <PixelBadge variant="verified" text="官方构建" />
+              </div>
+              <p class="platform-desc">支持 Windows 10/11 64-bit 与 ARM64 原生架构</p>
+              <div class="download-btn-group">
+                <PixelButton href="https://github.com/daydrift-studio/daydrift/releases" variant="primary" size="md" target="_blank" rel="noopener">
+                  获取 Windows 客户端
+                </PixelButton>
+              </div>
+            </PixelCard>
+
+            <PixelCard class="download-box">
+              <div class="platform-header">
+                <span class="platform-name">Linux / SteamOS</span>
+                <PixelBadge variant="verified" text="官方构建" />
+              </div>
+              <p class="platform-desc">适用于 glibc 2.31+ 及 Steam Deck 掌机设备</p>
+              <div class="download-btn-group">
+                <PixelButton href="https://github.com/daydrift-studio/daydrift/releases" variant="secondary" size="md" target="_blank" rel="noopener">
+                  获取 Linux 客户端
+                </PixelButton>
+              </div>
+            </PixelCard>
+
+            <PixelCard class="download-box">
+              <div class="platform-header">
+                <span class="platform-name">Android 移动端</span>
+                <PixelBadge variant="beta" text="测试 APK" />
+              </div>
+              <p class="platform-desc">支持 Android 8.0+ 触屏虚拟摇杆与手势操作</p>
+              <div class="download-btn-group">
+                <PixelButton href="https://github.com/daydrift-studio/daydrift/releases" variant="secondary" size="md" target="_blank" rel="noopener">
+                  获取 Android APK
+                </PixelButton>
+              </div>
+            </PixelCard>
+
+            <PixelCard class="download-box">
+              <div class="platform-header">
+                <span class="platform-name">跨平台独立服务端</span>
+                <PixelBadge variant="verified" text="无图形驱动" />
+              </div>
+              <p class="platform-desc">支持 Linux / Windows / macOS 轻量独立开服托管</p>
+              <div class="download-btn-group">
+                <PixelButton href="https://github.com/daydrift-studio/daydrift/releases" variant="secondary" size="md" target="_blank" rel="noopener">
+                  获取服务端包
+                </PixelButton>
+              </div>
+            </PixelCard>
+          </div>
+
+          <div class="download-footer-note">
+            <p>如需获取历史版本或校验 SHA-256 签名清单，请访问官方 <a href="https://github.com/daydrift-studio/daydrift/releases" target="_blank" rel="noopener">GitHub Releases</a>。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer locale="zh-CN" />
+  </body>
+</html>
+
+<style>
+  .hero-section {
+    padding: 6rem 0 4.5rem;
+    background: radial-gradient(circle at 50% 20%, rgba(229, 154, 76, 0.08) 0%, transparent 70%);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-tag-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+    max-width: 800px;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .features-section, .download-section {
+    padding: 5rem 0;
+  }
+
+  .features-section {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+
+  .feature-grid, .download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .platform-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .platform-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .platform-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    min-height: 2.5rem;
+  }
+
+  .download-btn-group {
+    display: flex;
+  }
+
+  .download-footer-note {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .download-footer-note a {
+    color: var(--accent-amber);
+    text-decoration: underline;
+  }
+</style>

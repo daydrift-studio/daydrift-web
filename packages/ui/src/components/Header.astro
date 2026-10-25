@@ -1,0 +1,118 @@
+---
+interface Props {
+  currentTab?: "home" | "download" | "docs" | "mods";
+  locale?: "zh-CN" | "en";
+}
+
+const { currentTab = "home", locale = "zh-CN" } = Astro.props;
+
+const isZh = locale === "zh-CN";
+---
+
+<header class="site-header">
+  <div class="container header-container">
+    <a href="/" class="brand-link" aria-label="度日：Daydrift 首页">
+      <div class="brand-badge">
+        <span class="pixel-dot"></span>
+        <span class="brand-name">度日</span>
+        <span class="brand-sub">DAYDRIFT</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="主导航">
+      <a href="/#download" class:list={["nav-item", { active: currentTab === "download" }]}>
+        {isZh ? "下载游戏" : "Download"}
+      </a>
+      <a href="https://docs.daydrift.example" class:list={["nav-item", { active: currentTab === "docs" }]} target="_blank" rel="noopener">
+        {isZh ? "文档中心" : "Docs"}
+      </a>
+      <a href="https://mods.daydrift.example" class:list={["nav-item", { active: currentTab === "mods" }]} target="_blank" rel="noopener">
+        {isZh ? "Mod 商店" : "Mod Store"}
+      </a>
+      <a href="https://github.com/daydrift-studio/daydrift" class="nav-item" target="_blank" rel="noopener" aria-label="GitHub 发行仓">
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    height: var(--header-height);
+    background-color: rgba(15, 16, 19, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .header-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+  }
+
+  .brand-badge {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .pixel-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-amber);
+    display: inline-block;
+    align-self: center;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+  }
+
+  .brand-sub {
+    font-size: 0.75rem;
+    color: var(--accent-amber);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .nav-item {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+
+  .nav-item:hover, .nav-item.active {
+    color: var(--accent-amber);
+  }
+
+  @media (max-width: 640px) {
+    .nav-links {
+      gap: 0.75rem;
+    }
+    .brand-sub {
+      display: none;
+    }
+  }
+</style>
