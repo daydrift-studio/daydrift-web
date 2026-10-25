@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
-  site: "https://docs.daydrift.example",
+  site: "https://daydrift-docs.blym.top",
   output: "static",
   integrations: [
     starlight({

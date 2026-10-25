@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://daydrift.example",
+  site: "https://daydrift.blym.top",
   output: "static",
   build: {
     format: "directory"
@@ -9,6 +9,7 @@ export default defineConfig({
   redirects: {
     "/eula": "/legal/eula",
     "/privacy": "/legal/privacy",
-    "/changelog": "/releases"
+    "/changelog": "/releases",
+    "/history": "/releases"
   }
 });

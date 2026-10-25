@@ -19,13 +19,18 @@ for (const p of candidatePaths) {
   }
 }
 
+const targetMarkdownPath = path.resolve(__dirname, "../src/content/docs/modding/api.md");
+
 if (!luaPath) {
+  if (fs.existsSync(targetMarkdownPath)) {
+    console.log("[INFO] mod_api.d.lua not found in candidate paths; using existing api.md (standalone build mode).");
+    process.exit(0);
+  }
   console.error("[ERROR] Could not find mod_api.d.lua in candidate paths.");
   process.exit(1);
 }
 
 const luaContent = fs.readFileSync(luaPath, "utf-8");
-const targetMarkdownPath = path.resolve(__dirname, "../src/content/docs/modding/api.md");
 
 interface ParamInfo {
   name: string;
