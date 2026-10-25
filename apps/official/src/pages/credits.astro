@@ -1,0 +1,288 @@
+---
+import "@daydrift/ui/styles";
+import SEOHead from "@daydrift/ui/components/SEOHead.astro";
+import Header from "@daydrift/ui/components/Header.astro";
+import Footer from "@daydrift/ui/components/Footer.astro";
+import PixelBadge from "@daydrift/ui/components/PixelBadge.astro";
+import PixelCard from "@daydrift/ui/components/PixelCard.astro";
+
+const creditGroups = [
+  {
+    category: "底层游戏引擎",
+    items: [
+      {
+        name: "Godot Engine (v4.7+)",
+        author: "Juan Linietsky, Ariel Manzur & Godot Engine contributors",
+        license: "MIT License",
+        url: "https://godotengine.org",
+        desc: "开放自由的高性能开源游戏引擎，支撑全域 2D 场景渲染与跨平台底层运行。"
+      }
+    ]
+  },
+  {
+    category: "开源扩展与叙事架构",
+    items: [
+      {
+        name: "Dialogue Manager",
+        author: "Nathan Hoad and Dialogue Manager contributors",
+        license: "MIT License",
+        url: "https://github.com/nathanhoad/godot_dialogue_manager",
+        desc: "驱动本游戏全域剧情独白、NPC 对白与多分支选项叙事逻辑。"
+      },
+      {
+        name: "Lit 2D Lighting Engine",
+        author: "Shawn Deprey (Fading Lantern Games)",
+        license: "MIT License",
+        url: "https://github.com/fading-lantern-games/lit",
+        desc: "高效的 2D 动态像素光影与环境氛围渲染插件。"
+      }
+    ]
+  },
+  {
+    category: "音乐与音频艺术",
+    items: [
+      {
+        name: "2:23 AM (Track 2)",
+        author: "Sharou (しゃろう)",
+        license: "DOVA-SYNDROME / OpenTracks Free BGM License",
+        url: "https://opentracks.com/zh-tw/bgm/detail/13494",
+        desc: "主菜单与深夜起居室常驻环境背景音乐。"
+      },
+      {
+        name: "日曜の午後 (Sunday Afternoon)",
+        author: "KK",
+        license: "DOVA-SYNDROME / OpenTracks Free BGM License",
+        url: "https://opentracks.com/zh-tw/bgm/detail/4658",
+        desc: "小镇街道漫游轻快日常背景音乐。"
+      }
+    ]
+  },
+  {
+    category: "开源字库与点阵艺术 (SIL OFL 1.1)",
+    items: [
+      {
+        name: "方舟像素字体 (Ark Pixel)",
+        author: "TakWolf",
+        license: "SIL Open Font License 1.1",
+        url: "https://github.com/TakWolf/ark-pixel-font",
+        desc: "游戏内核心正文与 UI 标题 12px / 16px 精确比例点阵字体。"
+      },
+      {
+        name: "融合像素字体 (Fusion Pixel)",
+        author: "TakWolf",
+        license: "SIL Open Font License 1.1",
+        url: "https://github.com/TakWolf/fusion-pixel-font",
+        desc: "全语言国际化扩展支持字库。"
+      },
+      {
+        name: "正格点黑 (ZhengGeDianHei 16px)",
+        author: "SolidZORO / 白鹿原嚒 (部分生僻字形增补)",
+        license: "SIL Open Font License 1.1",
+        url: "https://github.com/SolidZORO/zheng-ge-dian-hei",
+        desc: "强化辨识度的高清点阵汉字字库。"
+      },
+      {
+        name: "文泉驿点阵宋体 (WenQuanYi Bitmap Song)",
+        author: "Qianqian Fang & WenQuanYi Contributors",
+        license: "GPLv2 with Font Exception",
+        url: "http://wenq.org",
+        desc: "经典点阵中文字模支持。"
+      },
+      {
+        name: "思源黑体 (Source Han Sans SC)",
+        author: "Adobe Systems & Google LLC",
+        license: "SIL Open Font License 1.1",
+        url: "https://github.com/adobe-fonts/source-han-sans",
+        desc: "高分辨率平滑无衬线字体回退支持。"
+      }
+    ]
+  }
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEOHead
+      title="制作团队与开源鸣谢名单"
+      description="《度日：Daydrift》完整版权声明、底层引擎、开源插件、自制/授权音频以及开源点阵字库鸣谢清单。"
+    />
+  </head>
+  <body>
+    <Header currentTab="home" locale="zh-CN" />
+
+    <main class="credits-page">
+      <div class="container credits-container">
+        <div class="credits-hero">
+          <PixelBadge variant="verified" text="鸣谢与开源合规" />
+          <h1 class="page-title">制作人员与开源鸣谢名单</h1>
+          <p class="page-subtitle">
+            每一位在开源沃土与艺术创作中默默耕耘的先行者，共同点亮了《度日：Daydrift》的像素世界。
+          </p>
+        </div>
+
+        <!-- 游戏本体与原创 -->
+        <div class="original-section">
+          <PixelCard>
+            <div class="original-badge">作品核心版权</div>
+            <h2 class="original-title">《度日：Daydrift》本体与原创内容</h2>
+            <p class="original-creator">制作人 / 著作权人：<strong>白鹿原嚒</strong></p>
+            <p class="original-desc">
+              本游戏的原创程序架构、叙事文本、角色设定、场景切片与自制音频，均由白鹿原嚒保留完整的知识产权与著作权。
+            </p>
+          </PixelCard>
+        </div>
+
+        <!-- 第三方分类 -->
+        <div class="groups-container">
+          {creditGroups.map(group => (
+            <section class="credit-group">
+              <h2 class="group-title">❖ {group.category}</h2>
+              <div class="items-grid">
+                {group.items.map(item => (
+                  <div class="credit-item pixel-box">
+                    <div class="item-header">
+                      <span class="item-name">{item.name}</span>
+                      <PixelBadge variant="neutral" text={item.license} />
+                    </div>
+                    <div class="item-author">作者 / 团队：{item.author}</div>
+                    <p class="item-desc">{item.desc}</p>
+                    <div class="item-link">
+                      <a href={item.url} target="_blank" rel="noopener">访问项目主页 →</a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <Footer locale="zh-CN" />
+  </body>
+</html>
+
+<style>
+  .credits-page {
+    padding: 3.5rem 0 6rem;
+  }
+
+  .credits-container {
+    max-width: 900px;
+  }
+
+  .credits-hero {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0.75rem 0;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+
+  .original-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .original-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-amber);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .original-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .original-creator {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .original-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .groups-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .group-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-amber);
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .credit-item {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .item-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .item-author {
+    font-size: 0.82rem;
+    color: var(--accent-amber);
+    font-weight: 500;
+  }
+
+  .item-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .item-link a {
+    font-size: 0.8rem;
+    color: var(--accent-amber);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .item-link a:hover {
+    text-decoration: underline;
+  }
+</style>

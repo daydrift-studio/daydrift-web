@@ -5,5 +5,10 @@ export default defineConfig({
   output: "static",
   build: {
     format: "directory"
+  },
+  redirects: {
+    "/eula": "/legal/eula",
+    "/privacy": "/legal/privacy",
+    "/changelog": "/releases"
   }
 });

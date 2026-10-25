@@ -1,0 +1,126 @@
+{
+  "schema": "daydrift-latest/1",
+  "repo": "daydrift-studio/daydrift",
+  "tag": "v0.2.1-alpha",
+  "version": "0.2.1-alpha",
+  "versionCode": 4,
+  "channel": "alpha",
+  "publishedAt": "2026-10-25T08:57:01.000Z",
+  "releaseDigest": "sha256:e198cc957790703cdd348b243c1c2efa7de77db547a9f1c5716f3a169223ef26",
+  "notes": {
+    "zh-CN": "日常更新与修复",
+    "en": "Routine updates and fixes"
+  },
+  "assets": [
+    {
+      "id": "windows-x64",
+      "kind": "client",
+      "platform": "windows",
+      "arch": "x86_64",
+      "file": "Daydrift_v0.2.1-alpha_win_x64.exe",
+      "size": 65,
+      "sha256": "sha256:dfd7138860a79f7b79927c3418aef4a29590a3d6df52b1495f0331d9682db116",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_win_x64.exe"
+    },
+    {
+      "id": "windows-x86",
+      "kind": "client",
+      "platform": "windows",
+      "arch": "x86",
+      "file": "Daydrift_v0.2.1-alpha_win_x86.exe",
+      "size": 65,
+      "sha256": "sha256:03e57b9c5381d4b0589c965b8c9487443c0d729909acce293fcc6dc394078484",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_win_x86.exe"
+    },
+    {
+      "id": "windows-arm64",
+      "kind": "client",
+      "platform": "windows",
+      "arch": "arm64",
+      "file": "Daydrift_v0.2.1-alpha_win_arm64.exe",
+      "size": 67,
+      "sha256": "sha256:6a59d2dfa7bfe62efbbca0af8c836568bcfb5b0b82875ab531af2f4c598144b0",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_win_arm64.exe"
+    },
+    {
+      "id": "linux-x64",
+      "kind": "client",
+      "platform": "linux",
+      "arch": "x86_64",
+      "file": "Daydrift_v0.2.1-alpha_linux_x64.x86_64",
+      "size": 70,
+      "sha256": "sha256:a127ed85fd200b275e918da75016a0abec50fc33e33fc990af6500a348b49089",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_linux_x64.x86_64"
+    },
+    {
+      "id": "linux-arm64",
+      "kind": "client",
+      "platform": "linux",
+      "arch": "arm64",
+      "file": "Daydrift_v0.2.1-alpha_linux_arm64.arm64",
+      "size": 71,
+      "sha256": "sha256:ce249842b148d9a912b08819ab66569e596f819a70a09c898b88bc67e0e7aeea",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_linux_arm64.arm64"
+    },
+    {
+      "id": "macos-arm64",
+      "kind": "client",
+      "platform": "macos",
+      "arch": "arm64",
+      "file": "Daydrift_v0.2.1-alpha_macos_arm64.zip",
+      "size": 69,
+      "sha256": "sha256:8824fb12aafd08b9a61e8f3726a9ce044b65778b9e623ce6d9ebc37bb1c75178",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_macos_arm64.zip"
+    },
+    {
+      "id": "macos-x86_64",
+      "kind": "client",
+      "platform": "macos",
+      "arch": "x86_64",
+      "file": "Daydrift_v0.2.1-alpha_macos_x86_64.zip",
+      "size": 70,
+      "sha256": "sha256:247d2b96295189496f32e75ca4a52cbbb3d1a8c3550c21c210362c720995939e",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_macos_x86_64.zip"
+    },
+    {
+      "id": "android-arm64",
+      "kind": "client",
+      "platform": "android",
+      "arch": "arm64",
+      "file": "Daydrift_v0.2.1-alpha_arm64.apk",
+      "size": 63,
+      "sha256": "sha256:581ae4387bb557dad3a431cc7e5dba35208f2774f4218fd71336e5e864051e13",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_arm64.apk"
+    },
+    {
+      "id": "android-armv7",
+      "kind": "client",
+      "platform": "android",
+      "arch": "arm32",
+      "file": "Daydrift_v0.2.1-alpha_armv7.apk",
+      "size": 63,
+      "sha256": "sha256:0abaae5255a427aedae581dcb80ab3bdbee982501e1d7a7e1cc5349b9d961810",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_armv7.apk"
+    },
+    {
+      "id": "android-x86_64",
+      "kind": "client",
+      "platform": "android",
+      "arch": "x86_64",
+      "file": "Daydrift_v0.2.1-alpha_x86_64.apk",
+      "size": 64,
+      "sha256": "sha256:5bef92da5b85013af7ca657c2c7b5103cf4dac76e5eae54dd97f9edec7aee7ef",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_x86_64.apk"
+    },
+    {
+      "id": "android-universal",
+      "kind": "client",
+      "platform": "android",
+      "arch": "universal",
+      "file": "Daydrift_v0.2.1-alpha_universal_all_arch.apk",
+      "size": 76,
+      "sha256": "sha256:629901b8848876823cb02e3a0195b80f3fd9edba812b849b447ee4228a08d435",
+      "url": "https://github.com/daydrift-studio/daydrift/releases/download/v0.2.1-alpha/Daydrift_v0.2.1-alpha_universal_all_arch.apk"
+    }
+  ]
+}

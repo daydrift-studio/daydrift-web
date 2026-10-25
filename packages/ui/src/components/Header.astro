@@ -1,6 +1,6 @@
 ---
 interface Props {
-  currentTab?: "home" | "download" | "docs" | "mods";
+  currentTab?: "home" | "download" | "releases" | "docs" | "mods" | "about" | "credits";
   locale?: "zh-CN" | "en";
 }
 
@@ -20,16 +20,25 @@ const isZh = locale === "zh-CN";
     </a>
 
     <nav class="nav-links" aria-label="主导航">
-      <a href="/#download" class:list={["nav-item", { active: currentTab === "download" }]}>
-        {isZh ? "下载游戏" : "Download"}
+      <a href="/download" class:list={["nav-item", { active: currentTab === "download" }]}>
+        {isZh ? "下载" : "Download"}
+      </a>
+      <a href="/releases" class:list={["nav-item", { active: currentTab === "releases" }]}>
+        {isZh ? "更新历史" : "Releases"}
       </a>
       <a href="https://docs.daydrift.example" class:list={["nav-item", { active: currentTab === "docs" }]} target="_blank" rel="noopener">
-        {isZh ? "文档中心" : "Docs"}
+        {isZh ? "文档" : "Docs"}
       </a>
       <a href="https://mods.daydrift.example" class:list={["nav-item", { active: currentTab === "mods" }]} target="_blank" rel="noopener">
-        {isZh ? "Mod 商店" : "Mod Store"}
+        {isZh ? "Mod" : "Mods"}
       </a>
-      <a href="https://github.com/daydrift-studio/daydrift" class="nav-item" target="_blank" rel="noopener" aria-label="GitHub 发行仓">
+      <a href="/about" class:list={["nav-item", { active: currentTab === "about" }]}>
+        {isZh ? "关于" : "About"}
+      </a>
+      <a href="/credits" class:list={["nav-item", { active: currentTab === "credits" }]}>
+        {isZh ? "鸣谢" : "Credits"}
+      </a>
+      <a href="https://github.com/daydrift-studio/daydrift" class="nav-item github-link" target="_blank" rel="noopener" aria-label="GitHub 发行仓">
         GitHub
       </a>
     </nav>

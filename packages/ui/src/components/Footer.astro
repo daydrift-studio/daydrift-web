@@ -20,18 +20,25 @@ const currentYear = new Date().getFullYear();
 
       <div class="footer-links">
         <div class="link-group">
-          <div class="group-title">{isZh ? "生态导航" : "Ecosystem"}</div>
-          <a href="/#download">{isZh ? "版本下载" : "Downloads"}</a>
-          <a href="https://docs.daydrift.example" target="_blank" rel="noopener">{isZh ? "文档中心" : "Docs"}</a>
-          <a href="https://mods.daydrift.example" target="_blank" rel="noopener">{isZh ? "Mod 商店" : "Mod Store"}</a>
-          <a href="https://github.com/daydrift-studio/daydrift-mod-sdk" target="_blank" rel="noopener">{isZh ? "Mod SDK" : "Mod SDK"}</a>
+          <div class="group-title">{isZh ? "产品与下载" : "Product"}</div>
+          <a href="/download">{isZh ? "版本下载 (16平台)" : "Downloads"}</a>
+          <a href="/releases">{isZh ? "发行日志与公告" : "Releases"}</a>
+          <a href="/about">{isZh ? "关于作品与作者" : "About"}</a>
+          <a href="/credits">{isZh ? "鸣谢与开源致敬" : "Credits"}</a>
         </div>
 
         <div class="link-group">
-          <div class="group-title">{isZh ? "法律与指引" : "Legal & Safety"}</div>
-          <a href="/eula">{isZh ? "最终用户许可协议 (EULA)" : "EULA"}</a>
-          <a href="/privacy">{isZh ? "隐私政策" : "Privacy Policy"}</a>
-          <a href="https://github.com/daydrift-studio/daydrift" target="_blank" rel="noopener">{isZh ? "官方 GitHub" : "GitHub"}</a>
+          <div class="group-title">{isZh ? "开发者生态" : "Ecosystem"}</div>
+          <a href="https://docs.daydrift.example" target="_blank" rel="noopener">{isZh ? "开发与玩家文档" : "Documentation"}</a>
+          <a href="https://mods.daydrift.example" target="_blank" rel="noopener">{isZh ? "Mod 创作者商店" : "Mod Store"}</a>
+          <a href="https://github.com/daydrift-studio/daydrift-mod-sdk" target="_blank" rel="noopener">{isZh ? "Mod SDK 源码" : "Mod SDK Repo"}</a>
+          <a href="https://github.com/daydrift-studio/daydrift" target="_blank" rel="noopener">{isZh ? "GitHub 发行仓" : "GitHub Releases"}</a>
+        </div>
+
+        <div class="link-group">
+          <div class="group-title">{isZh ? "法律与安全" : "Legal & Safety"}</div>
+          <a href="/legal/eula">{isZh ? "最终用户许可协议 (EULA)" : "EULA"}</a>
+          <a href="/legal/privacy">{isZh ? "隐私政策" : "Privacy Policy"}</a>
         </div>
       </div>
     </div>

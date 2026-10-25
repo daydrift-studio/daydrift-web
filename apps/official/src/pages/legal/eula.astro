@@ -1,0 +1,136 @@
+---
+import "@daydrift/ui/styles";
+import SEOHead from "@daydrift/ui/components/SEOHead.astro";
+import Header from "@daydrift/ui/components/Header.astro";
+import Footer from "@daydrift/ui/components/Footer.astro";
+import PixelBadge from "@daydrift/ui/components/PixelBadge.astro";
+import PixelCard from "@daydrift/ui/components/PixelCard.astro";
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEOHead
+      title="最终用户许可协议 (EULA)"
+      description="《度日：Daydrift》最终用户软件许可协议与使用条款。"
+    />
+  </head>
+  <body>
+    <Header currentTab="home" locale="zh-CN" />
+
+    <main class="legal-page">
+      <div class="container legal-container">
+        <div class="legal-hero">
+          <PixelBadge variant="verified" text="官方协议" />
+          <h1 class="page-title">《度日：Daydrift》最终用户许可协议 (EULA)</h1>
+          <p class="update-date">生效与更新日期：2026 年 10 月 | 著作权人：白鹿原嚒</p>
+        </div>
+
+        <PixelCard class="article-box">
+          <div class="legal-prose">
+            <h3>重要须知与法律声明</h3>
+            <p>
+              在安装、复制、下载、访问或以其他方式使用电子游戏《度日：Daydrift》（以下统称“本游戏”或“本软件”）之前，请您仔细审阅本《最终用户许可协议》（以下简称“本协议”）。
+            </p>
+            <p>
+              <strong>一旦您下载、安装、启动或运行本软件，即表明您已完全知悉、理解并无条件同意受本协议全部条款的法律约束。如果您不同意本协议的任何内容，请切勿安装或运行本软件。</strong>
+            </p>
+
+            <hr />
+
+            <h3>第一条 软件许可范围与性质</h3>
+            <p>
+              1.1 <strong>许可授予</strong>：著作权人白鹿原嚒授予您一项个人的、非排他性的、不可转让的、不可分许可的软件终端使用许可。您仅可在您拥有合法控制权的个人计算终端设备上安装并运行本游戏，用于纯粹的非商业性个人娱乐用途。
+            </p>
+            <p>
+              1.2 <strong>非所有权转让</strong>：本软件受中华人民共和国著作权法及国际版权公约保护。本游戏仅供许可使用，而非出售。
+            </p>
+
+            <hr />
+
+            <h3>第二条 用户行为规范与禁止事项</h3>
+            <p>
+              2.1 <strong>商业性牟利</strong>：严禁以直接或间接营利为目的，出租、出借、租售、打包捆绑销售本软件或其任何提取出的原始美术、音频与代码切片。
+            </p>
+            <p>
+              2.2 <strong>非授权二包分发</strong>：严禁在未经著作权人书面授权的情况下，擅自将本游戏的可执行程序进行反编译、植入商业广告或恶意木马后，在第三方非官方软件下载站进行二次分发。
+            </p>
+            <p>
+              2.3 <strong>标识篡改</strong>：严禁删除、隐匿、涂改或伪造本软件可执行文件内所附带的著作权人署名、商标标识或开源许可声明。
+            </p>
+
+            <hr />
+
+            <h3>第三条 知识产权归属与开源声明</h3>
+            <p>
+              3.1 <strong>官方原创内容归属</strong>：除明确列明归属于第三方的开源资源外，本游戏包含的所有原创要素——包括但不限于官方主副标题《度日：Daydrift》、世界观架构、核心日常剧本、角色设定与台词独白、官方像素切片美术、官方自制音频与 GDScript 逻辑脚本，其完整著作权均归属于制作人“白鹿原嚒”所有。
+            </p>
+            <p>
+              3.2 <strong>开源许可合规</strong>：本游戏基于开源引擎 Godot Engine（MIT 协议）构建，字体遵循 SIL OFL 1.1 协议。第三方模组遵循各自声明的开源或自定协议。
+            </p>
+          </div>
+        </PixelCard>
+      </div>
+    </main>
+
+    <Footer locale="zh-CN" />
+  </body>
+</html>
+
+<style>
+  .legal-page {
+    padding: 3.5rem 0 6rem;
+  }
+
+  .legal-container {
+    max-width: 820px;
+  }
+
+  .legal-hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0.75rem 0;
+  }
+
+  .update-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .article-box {
+    padding: 2.5rem;
+  }
+
+  .legal-prose {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.8;
+  }
+
+  .legal-prose h3 {
+    font-size: 1.2rem;
+    color: var(--accent-amber);
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .legal-prose p {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+  }
+
+  .legal-prose strong {
+    color: var(--text-main);
+  }
+
+  .legal-prose hr {
+    border: none;
+    border-top: 1px solid var(--border-subtle);
+    margin: 1.75rem 0;
+  }
+</style>

@@ -1,0 +1,456 @@
+---
+import "@daydrift/ui/styles";
+import SEOHead from "@daydrift/ui/components/SEOHead.astro";
+import Header from "@daydrift/ui/components/Header.astro";
+import Footer from "@daydrift/ui/components/Footer.astro";
+import PixelButton from "@daydrift/ui/components/PixelButton.astro";
+import PixelBadge from "@daydrift/ui/components/PixelBadge.astro";
+import PixelCard from "@daydrift/ui/components/PixelCard.astro";
+import { formatBytes, formatSha256 } from "@daydrift/content";
+import { getReleaseManifest } from "../lib/releaseData";
+
+const manifest = getReleaseManifest();
+const tag = manifest ? manifest.tag : "v0.2.1-alpha";
+const clientAssets = manifest ? manifest.assets : [];
+const serverAssets = manifest ? (manifest.serverAssets ?? []) : [];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEOHead
+      title="全平台版本下载矩阵 - 官方正版分发"
+      description="《度日：Daydrift》全平台官方客户端及独立服务端下载矩阵。涵盖 Windows、Linux/Steam Deck、Android、macOS 及轻量服务端，附带官方 Ed25519 签名与 SHA-256 完整性清单。"
+    />
+  </head>
+  <body>
+    <Header currentTab="download" locale="zh-CN" />
+
+    <main class="download-page">
+      <div class="container">
+        <!-- Header -->
+        <div class="download-hero">
+          <div class="hero-badge">
+            <PixelBadge variant="verified" text="官方可信分发" />
+            <span class="version-callout">当前最新版本：{tag}</span>
+          </div>
+          <h1 class="page-title">全平台客户端与服务端下载</h1>
+          <p class="page-desc">
+            所有构建产物均由官方本地编译与 Ed25519 数字签名保护，无捆绑、纯净离线、安全免流氓。
+          </p>
+
+          <!-- 推荐平台探测卡片 -->
+          <div id="detected-platform-card" class="recommend-box" style="display: none;">
+            <div class="recommend-content">
+              <span class="recommend-badge">推荐您的设备：</span>
+              <span id="detected-platform-name" class="recommend-name">检测中...</span>
+            </div>
+            <a id="detected-download-btn" href="#" class="pixel-btn pixel-btn-primary pixel-btn-md">
+              一键下载适配信物
+            </a>
+          </div>
+        </div>
+
+        <!-- 平台分类筛选栏 -->
+        <div class="filter-bar" role="tablist" aria-label="平台筛选">
+          <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+            全部目标 (16)
+          </button>
+          <button class="filter-tab" data-filter="windows" role="tab">
+            Windows 桌面 (3)
+          </button>
+          <button class="filter-tab" data-filter="linux" role="tab">
+            Linux / Steam Deck (2)
+          </button>
+          <button class="filter-tab" data-filter="android" role="tab">
+            Android 移动端 (4)
+          </button>
+          <button class="filter-tab" data-filter="macos" role="tab">
+            macOS (2)
+          </button>
+          <button class="filter-tab" data-filter="server" role="tab">
+            独立服务端 (5)
+          </button>
+        </div>
+
+        <!-- 客户端矩阵 -->
+        <section class="matrix-section">
+          <div class="matrix-header">
+            <h2 class="matrix-title">🎮 游戏客户端下载 ({clientAssets.length} 项)</h2>
+            <span class="matrix-sub">点击文件名下载，点击哈希可一键复制 SHA-256</span>
+          </div>
+
+          <div class="asset-grid">
+            {clientAssets.map((asset) => (
+              <div class="asset-card pixel-box" data-platform={asset.platform} data-kind="client">
+                <div class="card-top">
+                  <span class="asset-target-label">{asset.platform.toUpperCase()} · {asset.arch}</span>
+                  <PixelBadge variant="verified" text={formatBytes(asset.size)} />
+                </div>
+                <div class="asset-filename" title={asset.file}>{asset.file}</div>
+                
+                <div class="sha-box">
+                  <span class="sha-label">SHA256:</span>
+                  <button class="copy-sha-btn" data-sha={asset.sha256} title="点击复制完整哈希">
+                    <code>{formatSha256(asset.sha256)}</code>
+                    <span class="copy-hint">复制</span>
+                  </button>
+                </div>
+
+                <div class="card-action">
+                  <PixelButton href={asset.url} variant="primary" size="sm">
+                    下载安装包
+                  </PixelButton>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 服务端矩阵 -->
+        <section class="matrix-section server-section">
+          <div class="matrix-header">
+            <h2 class="matrix-title">🖥️ 跨平台独立服务端 ({serverAssets.length} 项)</h2>
+            <span class="matrix-sub">无头模式，占用仅需约 50MB 内存，支持自动化开服</span>
+          </div>
+
+          <div class="asset-grid">
+            {serverAssets.map((asset) => (
+              <div class="asset-card pixel-box" data-platform={asset.platform} data-kind="server">
+                <div class="card-top">
+                  <span class="asset-target-label">SERVER · {asset.platform.toUpperCase()} ({asset.arch})</span>
+                  <PixelBadge variant="verified" text={formatBytes(asset.size)} />
+                </div>
+                <div class="asset-filename" title={asset.file}>{asset.file}</div>
+
+                <div class="sha-box">
+                  <span class="sha-label">SHA256:</span>
+                  <button class="copy-sha-btn" data-sha={asset.sha256} title="点击复制完整哈希">
+                    <code>{formatSha256(asset.sha256)}</code>
+                    <span class="copy-hint">复制</span>
+                  </button>
+                </div>
+
+                <div class="card-action">
+                  <PixelButton href={asset.url} variant="secondary" size="sm">
+                    下载服务端压缩包
+                  </PixelButton>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 系统运行要求 -->
+        <section class="requirements-section">
+          <PixelCard>
+            <h3 class="req-title">最低运行配置需求</h3>
+            <div class="req-grid">
+              <div class="req-item">
+                <span class="req-os">Windows</span>
+                <p class="req-spec">Windows 10 64-bit 或更高版本，支持 Vulkan / OpenGL 3.3 显卡</p>
+              </div>
+              <div class="req-item">
+                <span class="req-os">Linux / Steam Deck</span>
+                <p class="req-spec">glibc 2.31+，SteamOS 3.0+，支持 Wayland / X11</p>
+              </div>
+              <div class="req-item">
+                <span class="req-os">Android</span>
+                <p class="req-spec">Android 8.0 (Oreo) 及以上版本，支持 OpenGL ES 3.0</p>
+              </div>
+              <div class="req-item">
+                <span class="req-os">macOS</span>
+                <p class="req-spec">macOS 12.0 (Monterey) 或更高，原生适配 Apple Silicon 及 Intel</p>
+              </div>
+            </div>
+          </PixelCard>
+        </section>
+      </div>
+    </main>
+
+    <Footer locale="zh-CN" />
+
+    <!-- 客户端交互脚本（平台检测、筛选与复制） -->
+    <script is:inline>
+      // 1. 复制 SHA256 功能
+      document.querySelectorAll('.copy-sha-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sha = btn.getAttribute('data-sha');
+          if (!sha) return;
+          navigator.clipboard.writeText(sha).then(() => {
+            const hint = btn.querySelector('.copy-hint');
+            if (hint) {
+              const oldText = hint.textContent;
+              hint.textContent = '已复制！';
+              setTimeout(() => { hint.textContent = oldText; }, 1500);
+            }
+          });
+        });
+      });
+
+      // 2. 平台筛选交互
+      const tabs = document.querySelectorAll('.filter-tab');
+      const cards = document.querySelectorAll('.asset-card');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const filter = tab.getAttribute('data-filter');
+          cards.forEach(card => {
+            if (filter === 'all') {
+              card.style.display = 'flex';
+            } else if (filter === 'server') {
+              card.style.display = card.getAttribute('data-kind') === 'server' ? 'flex' : 'none';
+            } else {
+              const p = card.getAttribute('data-platform');
+              card.style.display = (p === filter && card.getAttribute('data-kind') === 'client') ? 'flex' : 'none';
+            }
+          });
+        });
+      });
+
+      // 3. 操作系统智能探测
+      const ua = navigator.userAgent.toLowerCase();
+      let detectedName = '';
+      let targetFile = '';
+
+      if (ua.includes('win')) {
+        detectedName = 'Windows (64-bit 推荐)';
+        targetFile = 'win_x64.exe';
+      } else if (ua.includes('android')) {
+        detectedName = 'Android 移动端 (ARM64)';
+        targetFile = 'arm64.apk';
+      } else if (ua.includes('linux')) {
+        detectedName = 'Linux / Steam Deck (x64)';
+        targetFile = 'linux_x64.x86_64';
+      } else if (ua.includes('mac')) {
+        detectedName = 'macOS (Universal / Apple Silicon)';
+        targetFile = 'macos_arm64.zip';
+      }
+
+      if (detectedName) {
+        const box = document.getElementById('detected-platform-card');
+        const nameEl = document.getElementById('detected-platform-name');
+        const btnEl = document.getElementById('detected-download-btn');
+        if (box && nameEl && btnEl) {
+          nameEl.textContent = detectedName;
+          const matchCard = Array.from(cards).find(c => c.querySelector('.asset-filename').textContent.includes(targetFile));
+          if (matchCard) {
+            const link = matchCard.querySelector('a').getAttribute('href');
+            btnEl.setAttribute('href', link);
+            box.style.display = 'flex';
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  .download-page {
+    padding: 3.5rem 0 5rem;
+  }
+
+  .download-hero {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 3rem;
+  }
+
+  .hero-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .version-callout {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .recommend-box {
+    margin-top: 1.75rem;
+    background: rgba(229, 154, 76, 0.1);
+    border: 1px solid var(--accent-amber);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .recommend-name {
+    font-weight: 700;
+    color: var(--accent-amber);
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .filter-tab {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .filter-tab:hover, .filter-tab.active {
+    background-color: var(--bg-card-hover);
+    color: var(--accent-amber);
+    border-color: var(--accent-amber);
+  }
+
+  .matrix-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .matrix-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .matrix-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+  }
+
+  .matrix-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .asset-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .asset-target-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-amber);
+    letter-spacing: 0.05em;
+  }
+
+  .asset-filename {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: monospace;
+  }
+
+  .sha-box {
+    background-color: var(--bg-deep);
+    border: 1px solid var(--border-subtle);
+    padding: 0.4rem 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+  }
+
+  .sha-label {
+    color: var(--text-faint);
+    font-size: 0.7rem;
+    margin-right: 0.35rem;
+  }
+
+  .copy-sha-btn {
+    background: none;
+    border: none;
+    color: var(--accent-amber);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+  }
+
+  .copy-hint {
+    font-size: 0.7rem;
+    color: var(--text-faint);
+  }
+
+  .card-action {
+    margin-top: 0.5rem;
+  }
+
+  .requirements-section {
+    margin-top: 4rem;
+  }
+
+  .req-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.75rem;
+  }
+
+  .req-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .req-os {
+    display: block;
+    font-weight: 700;
+    color: var(--accent-amber);
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .req-spec {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+</style>
