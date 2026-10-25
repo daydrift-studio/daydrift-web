@@ -7,6 +7,8 @@
     "dev": "astro dev --port 4322",
     "build": "astro build",
     "preview": "astro preview",
+    "generate:api": "tsx tools/generate_api_reference.ts",
+    "check:api": "tsx tools/generate_api_reference.ts --check",
     "typecheck": "astro check",
     "lint": "tsc --noEmit",
     "test": "node --test"
