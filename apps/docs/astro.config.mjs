@@ -7,6 +7,10 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "《度日：Daydrift》文档中心",
+      logo: {
+        src: "./src/assets/icon.svg",
+        replacesTitle: false,
+      },
       defaultLocale: "root",
       locales: {
         root: {
