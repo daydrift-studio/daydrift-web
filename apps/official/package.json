@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --port 4321",
-    "build": "astro build",
+    "build": "astro build && node ../../tools/sync-dist.mjs official",
     "preview": "astro preview",
     "typecheck": "astro check",
     "lint": "tsc --noEmit",
