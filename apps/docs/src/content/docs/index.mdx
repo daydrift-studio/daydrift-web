@@ -1,18 +1,21 @@
 ---
 title: 《度日：Daydrift》文档中心
-description: 官方玩家指南、模组开发手册与开服运维文档
+description: 官方玩家指南、三体系模组开发手册与开服运维全景文档
 template: splash
 hero:
-  tagline: 在慢下来的日子里，驻足与漫游。官方全生态指南。
+  tagline: 在慢下来的日子里，驻足与漫游。官方全生态全景技术指南。
   actions:
     - text: 玩家快速上手
       link: /player/getting-started/
       icon: right-arrow
       variant: primary
-    - text: 模组创作指南
+    - text: 三体系 Mod SDK
       link: /modding/overview/
       icon: puzzle
       variant: secondary
+    - text: 独立服务端部署
+      link: /server/deployment/
+      icon: laptop
     - text: 前往官网
       link: https://daydrift.blym.top
       icon: external
@@ -24,15 +27,15 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 <CardGrid stagger>
   <Card title="玩家指南" icon="open-book">
-    了解游戏基础操作、时段流转（清晨/正午/傍晚/深夜）、小镇漫游与起居生活。
+    了解游戏基础操作、四时时段流转（清晨/正午/傍晚/深夜）、起居日常互动、局域网自动发现同游与模组崩溃自愈机制。
   </Card>
-  <Card title="模组创作" icon="puzzle">
-    探索 `daydrift-mod-sdk`，通过 Lua 脚本与数据配置，安全注入你的独立分支与新日常。
+  <Card title="三体系 Mod SDK" icon="puzzle">
+    探索 `daydrift-mod-sdk` 与 `ddmod_cli.py` 工具链。从 Tier 1 纯数据切片、Tier 2 双端脚本沙盒到 Tier 3 原生 PCK 全权基类，灵活扩展你的专属故事。
   </Card>
-  <Card title="独立服务端" icon="laptop">
-    使用官方跨平台无头服务端包，在 Linux、Windows 或 macOS 上一键搭建专属局域网或公网房间。
+  <Card title="独立服务端运维" icon="laptop">
+    使用官方跨平台无头服务端包（Headless），在 Linux、Windows 或容器化环境中一键开服，管理旅人房间、公共黑板与网络模组。
   </Card>
   <Card title="架构与安全规范" icon="seti:lock">
-    查阅官方 Ed25519 数字签名规范、发布清单 Schema 与供应链安全白皮书。
+    查阅闭源内核与公开分发架构、Ed25519 签名供应链防御机制、发布清单 Schema 与底层网络协议规范。
   </Card>
 </CardGrid>
