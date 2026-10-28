@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from "astro:transitions";
+
 interface Props {
   title: string;
   description: string;
@@ -43,3 +45,6 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 <!-- 移动端与主题 -->
 <meta name="theme-color" content="#0f1013" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- 无缝客户端路由与页面平滑过渡 -->
+<ClientRouter />
