@@ -134,7 +134,13 @@ var lan_host_manager: Node           # 直达 /root/LanHostManager
 | `spawn_interactable(target_scene_id, node_name, pos, tex, prompt_tr, on_interact) -> Node` | 在指定坐标生成带碰撞检测与气泡的交互物体 |
 | `inject_interaction_choice(anchor_id, choice_tr, callback, condition) -> void` | 向原版家具或 NPC 注入自定义互动分支 |
 | `add_screen_post_shader(layer: int, mat: ShaderMaterial) -> ColorRect` | 向全局视口挂载全屏后处理着色器滤镜 |
-| `mount_ui_node(target_alias_or_path: String, control: Control) -> void` | 将自定义 UI 界面挂载到指定节点（支持 "MainMenu"、"InGameHUD"） |
+| `mount_ui_node(target_alias_or_path: String, control: Control) -> void` | 将自定义 UI 界面挂载到指定节点（支持 "MainMenu"、"InGameHUD"、"PauseDrawer"） |
+| `toast(message: String) -> void` | 快速触发全域点阵像素浮层通知 |
+| `say(speaker_or_text: String, text: String = "") -> void` | 调起原版剧情对白框展示台词或内心独白 |
+| `choice(speaker: String, text: String, choices: Array, callback: Callable = Callable()) -> void` | 弹出多分支选项对话框并接收玩家输入回调 |
+| `send_net_packet(channel: String, payload: Dictionary, target_peer: int = 0) -> void` | 向联机房间或指定对端发送自定义信道数据包 |
+| `register_location(loc_id: String, scene_res: PackedScene) -> void` | 动态注册全新的可探索地点场景 |
+| `register_or_override_npc(npc_id: String, schedule_dict: Dictionary, custom_scene: PackedScene = null) -> void` | 动态注册或覆盖 NPC 四时作息与出没场景 |
 | `register_keybind(action_name: String, key: Key, joy_btn: JoyButton = JOY_BUTTON_INVALID) -> void` | 动态注册自定义输入动作与按键绑定 |
 | `connect_managed(sig: Signal, callable: Callable, flags: int = 0) -> void` | 托管连接原生信号，模组卸载时自动断开 |
 | `add_child_managed(parent: Node, child: Node) -> Node` | 托管添加子节点，模组卸载时自动调用 `queue_free()` 销毁 |

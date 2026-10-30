@@ -205,11 +205,46 @@ var screen_layer = add_screen_post_shader(10, mat)
 
 ### 6.3 注入原生 UI 界面 (`mount_ui_node`)
 
-将自定义的 HUD 挂件注入原生界面的指定节点下：
+将自定义的 HUD 挂件注入原生界面的指定节点下（支持 `"MainMenu"`、`"InGameHUD"`、`"PauseDrawer"` 等预设别名或 `/root/...` 绝对节点路径）：
 
 ```gdscript
+# 挂载至游戏内主 HUD
 var custom_clock = load("res://mods/my_mod/custom_clock.tscn").instantiate()
 mount_ui_node("InGameHUD", custom_clock)
+
+# 挂载至局内 Esc 暂停抽屉
+var mod_extra_tab = load("res://mods/my_mod/pause_tab.tscn").instantiate()
+mount_ui_node("PauseDrawer", mod_extra_tab)
+```
+
+### 6.4 便捷提示、叙事与分支交互 (`toast`, `say`, `choice`)
+
+基类内置了与游戏原生对话系统完全接通的快捷助手函数：
+
+```gdscript
+# 1. 弹出屏幕顶栏像素提示
+toast("已拾取模组神秘道具：古旧咖啡豆！")
+
+# 2. 调起原版剧情对白框（单参数默认为内心独白，双参数指定说话人）
+say("店长", "外面的雨渐渐小了，要来一杯热咖啡吗？")
+
+# 3. 弹出多分支选项对话框并接收回调
+choice("店长", "今天想品尝哪种烘焙度的豆子？", ["浅烘耶加雪菲", "中烘哥伦比亚", "深烘曼特宁"], func(index: int):
+    match index:
+        0: toast("选择了明亮花果香气的浅烘")
+        1: toast("选择了坚果焦糖风味的中烘")
+        2: toast("选择了醇厚浓郁的深烘")
+)
+```
+
+### 6.5 联机双端信令广播 (`send_net_packet`)
+
+```gdscript
+# 向房间内其他旅人广播自定义信道数据包
+send_net_packet("custom_weather", {
+    "weather": "misty_rain",
+    "intensity": 0.8
+})
 ```
 
 ---
